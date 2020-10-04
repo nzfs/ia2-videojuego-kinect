@@ -13,8 +13,9 @@ public class Juego extends Pantallas {
 	private FWorld mundo;
 	private CapturaJugador jugador;
 	private ArrayList<Astronauta> astronautas;
+	private ArrayList<Asteroide> asteroides;
 	private boolean timer;
-	
+
 	public Jugador jugadorIzq;
 	public Jugador jugadorDer;
 
@@ -28,6 +29,7 @@ public class Juego extends Pantallas {
 		jugadorDer = new Jugador(sketch, mundo);
 
 		astronautas = new ArrayList<Astronauta>();
+		asteroides = new ArrayList<Asteroide>();
 
 		puntaje = 10;
 		timer = true;
@@ -51,7 +53,7 @@ public class Juego extends Pantallas {
 	{
 		timer();
 		tiempo = (sketch.millis() - tiempoInicio) / 1000;
-		
+
 		mundo.step();
 		jugador.trackSkeleton();
 
@@ -72,10 +74,11 @@ public class Juego extends Pantallas {
 		// asteroides //
 		if (sketch.frameCount % 30 == 0)
 		{
-			@SuppressWarnings("unused")
-			Asteroide enemigo = new Asteroide(sketch, mundo);
+			// @SuppressWarnings("unused")
+			// Asteroide asteroide = new Asteroide(sketch, mundo);
+			asteroides.add(new Asteroide(sketch, mundo));
 		}
-
+		
 		// astronautas //
 		if (sketch.frameCount % 45 == 0)
 		{
@@ -105,6 +108,13 @@ public class Juego extends Pantallas {
 		if (puntaje <= 0)
 		{
 			remove();
+			
+			for(Asteroide a : asteroides)
+			{
+				a.remove();
+			}
+			
+			asteroides.clear();
 			timer = true;
 			puntaje = 10;
 		}

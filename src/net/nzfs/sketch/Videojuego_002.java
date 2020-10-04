@@ -32,8 +32,10 @@ public class Videojuego_002 extends PApplet implements fisica.FContactListener {
 	public Pantallas fin;
 	public CapturaJugador jugador;
 	public PImage fondo;
+	public PImage asteroideHijo[];
 	public PGraphics parallax;
-	
+	public String estado;
+
 	// fisica
 	public FWorld mundo;
 	public FBox piso;
@@ -62,6 +64,13 @@ public class Videojuego_002 extends PApplet implements fisica.FContactListener {
 		jugador = new CapturaJugador(this);
 		fondo = createImage(width, height, RGB);
 		fondo = loadImage("bg5.jpg");
+		asteroideHijo = new PImage[6];
+
+		for (int i = 0; i < asteroideHijo.length; i++)
+		{
+			asteroideHijo[i] = loadImage("sprites/asteroide/small/a" + i + "_small.png");
+		}
+
 		Fisica.init(this);
 		mundo = new FWorld();
 		juego = new Juego(this, fondo, mundo, jugador);
@@ -88,10 +97,12 @@ public class Videojuego_002 extends PApplet implements fisica.FContactListener {
 		if (!loaded)
 		{
 			cargando.display();
+			estado = "cargando";
 		} else
 		{
 			if (inicial.isActive())
 			{
+				estado = "inicial";
 				inicial.display();
 			} else if (!jugador.kinect.isInit())
 			{
@@ -104,6 +115,7 @@ public class Videojuego_002 extends PApplet implements fisica.FContactListener {
 			{
 				if (juego.isActive())
 				{
+					estado = "juego";
 					juego.update();
 				}
 				mundo.draw();
@@ -111,6 +123,8 @@ public class Videojuego_002 extends PApplet implements fisica.FContactListener {
 
 			if (!juego.isActive())
 			{
+				estado = "final";
+				fin.active();
 				fin.display();
 			}
 		}
@@ -220,6 +234,7 @@ public class Videojuego_002 extends PApplet implements fisica.FContactListener {
 			hijo.setPosition(x + random(-t, t), y + random(-t, t));
 			hijo.setFill(200, 0, 0);
 			hijo.setName("asteroideHijo");
+			hijo.attachImage(asteroideHijo[(int) random(6)]);
 			// agrego al mundo
 			mundo.add(hijo);
 		}
@@ -239,8 +254,11 @@ public class Videojuego_002 extends PApplet implements fisica.FContactListener {
 		if (inicial.isActive())
 		{
 			inicial.remove();
-		} else if (fin.isActive())
+		}
+
+		if (fin.isActive())
 		{
+			println("fin");
 			fin.remove();
 			inicial.active();
 			juego.active();

@@ -8,6 +8,7 @@ public class Final extends Pantallas {
 	public Final(PApplet _sketch, PImage _fondo)
 	{
 		super(_sketch, _fondo);
+		active = false;
 	}
 
 	public void display()
