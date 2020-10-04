@@ -31,9 +31,9 @@ public class Astronauta extends FBox {
 
 		for (int i = 0; i < astronautaIzq.length; i++)
 		{
-			astronautaIzq[i] = sketch.loadImage("sprites/00" + (i + 1) + "_izq.png");
+			astronautaIzq[i] = sketch.loadImage("sprites/astronauta/00" + (i + 1) + "_izq.png");
 			astronautaIzq[i].resize(50, 75);
-			astronautaDer[i] = sketch.loadImage("sprites/00" + (i + 1) + ".png");
+			astronautaDer[i] = sketch.loadImage("sprites/astronauta/00" + (i + 1) + ".png");
 			astronautaDer[i].resize(50, 75);
 		}
 	}

@@ -10,7 +10,7 @@ public class Cargando extends Pantallas {
 	public Cargando(PApplet _sketch, PImage _fondo)
 	{
 		super(_sketch, _fondo);
-		astro = sketch.loadImage("sprites/001.png");
+		astro = sketch.loadImage("sprites/astronauta/001.png");
 	}
 	
 	private float angulo;
