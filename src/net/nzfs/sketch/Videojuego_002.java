@@ -1,3 +1,9 @@
+//----------------------------------------
+// nzfs 2020
+// nzfs@nzfs.net
+// nzfs.net
+//----------------------------------------
+
 package net.nzfs.sketch;
 
 import processing.core.PApplet;
