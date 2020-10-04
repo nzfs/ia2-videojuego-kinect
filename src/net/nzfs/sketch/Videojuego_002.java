@@ -33,6 +33,7 @@ public class Videojuego_002 extends PApplet implements fisica.FContactListener {
 	public CapturaJugador jugador;
 	public PImage fondo;
 	public PGraphics parallax;
+	
 	// fisica
 	public FWorld mundo;
 	public FBox piso;
