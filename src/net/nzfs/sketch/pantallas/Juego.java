@@ -78,7 +78,13 @@ public class Juego extends Pantallas {
 			// Asteroide asteroide = new Asteroide(sketch, mundo);
 			asteroides.add(new Asteroide(sketch, mundo));
 		}
-		
+
+		for (Asteroide a : asteroides)
+		{
+			a.addTorque(10);
+			a.addImpulse(sketch.random(-10, 10), sketch.random(10));
+		}
+
 		// astronautas //
 		if (sketch.frameCount % 45 == 0)
 		{
@@ -108,12 +114,13 @@ public class Juego extends Pantallas {
 		if (puntaje <= 0)
 		{
 			remove();
-			
-			for(Asteroide a : asteroides)
+
+			for (Asteroide a : asteroides)
 			{
 				a.remove();
 			}
-			
+
+			astronautas.clear();
 			asteroides.clear();
 			timer = true;
 			puntaje = 10;

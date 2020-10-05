@@ -26,6 +26,7 @@ public class Asteroide extends FCircle {
 		setName("asteroide");
 		attachImage(asteroides[(int) sketch.random(10)]);
 		setPosition(sketch.random(sketch.width), 0);
+
 		mundo.add(this);
 	}
 

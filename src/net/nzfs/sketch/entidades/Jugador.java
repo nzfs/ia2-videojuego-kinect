@@ -16,6 +16,7 @@ public class Jugador extends FCircle {
 		sketch = _sketch;
 		mundo = _mundo;
 		setName("jugador");
+		setGroupIndex(-1);
 		mundo.add(this);
 		cadena = new FMouseJoint(this, 0, 0);
 		mundo.add(cadena);
