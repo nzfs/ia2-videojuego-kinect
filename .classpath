@@ -6,5 +6,7 @@
 	<classpathentry kind="lib" path="C:/Users/fonse/Documents/Processing/libraries/SimpleOpenNI/SimpleOpenNI/library/SimpleOpenNI.jar"/>
 	<classpathentry kind="lib" path="C:/Users/fonse/Documents/Processing/libraries/fisica/library/fisica.jar"/>
 	<classpathentry kind="lib" path="C:/Users/fonse/Documents/Processing/libraries/fisica/library/JBox2D-2.0.1-b250-Library.jar"/>
+	<classpathentry kind="lib" path="C:/Users/fonse/Documents/processing-3.5.3/core/library/gluegen-rt.jar"/>
+	<classpathentry kind="lib" path="C:/Users/fonse/Documents/processing-3.5.3/core/library/jogl-all.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

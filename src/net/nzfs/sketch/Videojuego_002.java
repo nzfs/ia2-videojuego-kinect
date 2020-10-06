@@ -6,10 +6,7 @@
 
 package net.nzfs.sketch;
 
-import processing.core.PApplet;
-import processing.core.PFont;
-import processing.core.PGraphics;
-import processing.core.PImage;
+import processing.core.*;
 import net.nzfs.sketch.entidades.*;
 import net.nzfs.sketch.pantallas.*;
 
@@ -21,8 +18,8 @@ public class Videojuego_002 extends PApplet implements fisica.FContactListener {
 
 	public void settings()
 	{
-		size(640, 480);
-		// fullScreen();
+		//size(640, 480);
+		fullScreen(P3D);
 	}
 
 	// -------------------------------------------------------------------------------
