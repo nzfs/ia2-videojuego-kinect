@@ -257,6 +257,7 @@ public class Videojuego_002 extends PApplet implements fisica.FContactListener {
 			hijo.setFill(200, 0, 0);
 			hijo.setName("asteroideHijo");
 			hijo.attachImage(asteroideHijoImg[(int) random(6)]);
+			hijo.addForce(random(-50000, 50000), -random(50000));
 			// agrego al mundo
 			mundo.add(hijo);
 		}

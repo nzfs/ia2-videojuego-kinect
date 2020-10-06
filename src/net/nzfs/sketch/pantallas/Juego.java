@@ -58,8 +58,8 @@ public class Juego extends Pantallas {
 		jugador.trackSkeleton();
 
 		PImage jugadorMask = jugador.userMask(fondo);
-		jugadorMask.resize(sketch.width, sketch.height);
-		sketch.image(jugadorMask, 0, 0);
+		//jugadorMask.resize(640, 480);
+		sketch.image(jugadorMask, 0, 0, sketch.width, sketch.height);
 
 		sketch.fill(255, 0, 0);
 		sketch.noStroke();

@@ -26,7 +26,8 @@ public class CapturaJugador {
 		kinect.enableRGB();
 		// kinect.alternativeViewPointDepthToImage();
 		// mask = new PImage(sketch.width, sketch.height);
-		mask = sketch.createImage(sketch.width, sketch.height, PApplet.RGB);
+	//	mask = sketch.createImage(sketch.width, sketch.height, PApplet.RGB);
+		mask = sketch.createImage(640, 480, PApplet.RGB);
 		sketch.fill(255, 0, 0);
 		kinect.setMirror(false);
 		rightHandPosition = new PVector();
