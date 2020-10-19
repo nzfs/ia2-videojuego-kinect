@@ -2,6 +2,7 @@ package net.nzfs.sketch.pantallas;
 
 import java.util.ArrayList;
 
+import fisica.FBox;
 import fisica.FWorld;
 import net.nzfs.sketch.CapturaJugador;
 import net.nzfs.sketch.entidades.*;
@@ -11,7 +12,7 @@ import processing.core.PImage;
 public class Juego extends Pantallas {
 
 	private FWorld mundo;
-	private CapturaJugador jugador;
+	private CapturaJugador capturaJugador;
 	private ArrayList<Astronauta> astronautas;
 	private ArrayList<Asteroide> asteroides;
 	private boolean timer;
@@ -19,11 +20,14 @@ public class Juego extends Pantallas {
 	public Jugador jugadorIzq;
 	public Jugador jugadorDer;
 
+	private FBox piso;
+	private PImage pisoImg;
+
 	public Juego(PApplet _sketch, PImage _fondo, FWorld _mundo, CapturaJugador _jugador)
 	{
 		super(_sketch, _fondo);
 		mundo = _mundo;
-		jugador = _jugador;
+		capturaJugador = _jugador;
 
 		jugadorIzq = new Jugador(sketch, mundo);
 		jugadorDer = new Jugador(sketch, mundo);
@@ -33,6 +37,20 @@ public class Juego extends Pantallas {
 
 		puntaje = 10;
 		timer = true;
+
+		// pisoImg = sketch.createImage(sketch.width, sketch.height, PApplet.RGB);
+		pisoImg = sketch.loadImage("sprites/piso.png");
+		pisoImg.resize(sketch.width, 0);
+
+		piso = new FBox(sketch.width, 10);
+
+		piso.setPosition(0 + sketch.width / 2, sketch.height);
+		piso.setGrabbable(false);
+		piso.attachImage(pisoImg);
+		piso.setStatic(true);
+		piso.setName("piso");
+		piso.setRestitution(1.5f);
+		mundo.add(piso);
 	}
 
 	public void display()
@@ -49,40 +67,44 @@ public class Juego extends Pantallas {
 		}
 	}
 
+	public void explosion()
+	{
+
+	}
+
 	public void update()
 	{
 		timer();
 		tiempo = (sketch.millis() - tiempoInicio) / 1000;
 
 		mundo.step();
-		jugador.trackSkeleton();
+		capturaJugador.trackSkeleton();
 
-		PImage jugadorMask = jugador.userMask(fondo);
-		//jugadorMask.resize(640, 480);
+		PImage jugadorMask = capturaJugador.userMask(fondo);
+		// jugadorMask.resize(640, 480);
+		
 		sketch.image(jugadorMask, 0, 0, sketch.width, sketch.height);
 
 		sketch.fill(255, 0, 0);
 		sketch.noStroke();
 
 		sketch.pushStyle();
-		sketch.textSize(10);
+		sketch.textSize(20);
 		sketch.fill(200);
-		sketch.text("Astronautas: " + puntaje, sketch.width - 175, 30);
-		sketch.text("Tiempo: " + tiempo + " segundos", sketch.width - 175, 50);
+		sketch.text("Astronautas: " + puntaje, sketch.width - 175*2, 30);
+		sketch.text("Tiempo: " + tiempo + " segundos", sketch.width - 175*2, 75);
 		sketch.popStyle();
 
 		// asteroides //
 		if (sketch.frameCount % 30 == 0)
 		{
-			// @SuppressWarnings("unused")
-			// Asteroide asteroide = new Asteroide(sketch, mundo);
 			asteroides.add(new Asteroide(sketch, mundo));
 		}
 
 		for (Asteroide a : asteroides)
 		{
 			a.addTorque(10);
-			a.addImpulse(sketch.random(-10, 10), sketch.random(10));
+			// a.addImpulse(sketch.random(-100, 100), sketch.random(100));
 		}
 
 		// astronautas //
@@ -97,18 +119,28 @@ public class Juego extends Pantallas {
 		}
 
 		// trackeo jugador //
-		if (jugador.tracking)
+		if (capturaJugador.tracking)
 		{
 			// println(jugador.leftHandPosition, jugador.rightHandPosition);
 		}
 
-		if (jugador.leftHandPosition != null && jugador.leftHandPosition.x != 0 && jugador.leftHandPosition.y != 0)
+		if (capturaJugador.leftHandPosition != null && capturaJugador.leftHandPosition.x != 0
+				&& capturaJugador.leftHandPosition.y != 0)
 		{
-			jugadorIzq.update(jugador.leftHandPosition.x, jugador.leftHandPosition.y);
+			float leftHandX = PApplet.map(capturaJugador.leftHandPosition.x, 0, 640, 0, sketch.width);
+			float leftHandY = PApplet.map(capturaJugador.leftHandPosition.y, 0, 480, 0, sketch.height);
+			// jugadorIzq.update(capturaJugador.leftHandPosition.x,
+			// capturaJugador.leftHandPosition.y);
+			jugadorIzq.update(leftHandX, leftHandY);
 		}
-		if (jugador.rightHandPosition != null && jugador.rightHandPosition.x != 0 && jugador.rightHandPosition.y != 0)
+		if (capturaJugador.rightHandPosition != null && capturaJugador.rightHandPosition.x != 0
+				&& capturaJugador.rightHandPosition.y != 0)
 		{
-			jugadorDer.update(jugador.rightHandPosition.x, jugador.rightHandPosition.y);
+			float rightHandX = PApplet.map(capturaJugador.rightHandPosition.x, 0, 640, 0, sketch.width);
+			float rightHandY = PApplet.map(capturaJugador.rightHandPosition.y, 0, 480, 0, sketch.height);
+			// jugadorDer.update(capturaJugador.rightHandPosition.x,
+			// capturaJugador.rightHandPosition.y);
+			jugadorDer.update(rightHandX, rightHandY);
 		}
 
 		if (puntaje <= 0)
@@ -118,6 +150,11 @@ public class Juego extends Pantallas {
 			for (Asteroide a : asteroides)
 			{
 				a.remove();
+			}
+
+			for (Astronauta astronauta : astronautas)
+			{
+				astronauta.matar();
 			}
 
 			astronautas.clear();

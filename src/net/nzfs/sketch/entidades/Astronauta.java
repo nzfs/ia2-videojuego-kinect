@@ -17,11 +17,11 @@ public class Astronauta extends FBox {
 
 	public Astronauta(PApplet _sketch, FWorld _mundo, float _posX, float _dir)
 	{
-		super(50, 75);
+		super(75, 100);
 		sketch = _sketch;
 		mundo = _mundo;
 		setName("astronauta");
-		setPosition(_posX, sketch.height - 50);
+		setPosition(_posX, sketch.height - 75);
 		setGroupIndex(-1);
 		mundo.add(this);
 		astronautaIzq = new PImage[7];
@@ -32,9 +32,9 @@ public class Astronauta extends FBox {
 		for (int i = 0; i < astronautaIzq.length; i++)
 		{
 			astronautaIzq[i] = sketch.loadImage("sprites/astronauta/00" + (i + 1) + "_izq.png");
-			astronautaIzq[i].resize(50, 75);
+			astronautaIzq[i].resize(75, 100);
 			astronautaDer[i] = sketch.loadImage("sprites/astronauta/00" + (i + 1) + ".png");
-			astronautaDer[i].resize(50, 75);
+			astronautaDer[i].resize(75, 100);
 		}
 	}
 

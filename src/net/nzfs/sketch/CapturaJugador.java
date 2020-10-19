@@ -26,7 +26,7 @@ public class CapturaJugador {
 		kinect.enableRGB();
 		// kinect.alternativeViewPointDepthToImage();
 		// mask = new PImage(sketch.width, sketch.height);
-	//	mask = sketch.createImage(sketch.width, sketch.height, PApplet.RGB);
+		// mask = sketch.createImage(sketch.width, sketch.height, PApplet.RGB);
 		mask = sketch.createImage(640, 480, PApplet.RGB);
 		sketch.fill(255, 0, 0);
 		kinect.setMirror(false);
@@ -125,7 +125,7 @@ public class CapturaJugador {
 				{
 					// set the sketch pixel to the color pixel
 					// mask.pixels[i] = rgbImage.pixels[i];
-					mask.pixels[i] = sketch.color(150, 0, 255);
+					mask.pixels[i] = sketch.color(50, 0, 255);
 				} else
 				{
 					mask.pixels[i] = fondo.pixels[i];

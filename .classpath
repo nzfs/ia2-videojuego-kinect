@@ -8,5 +8,11 @@
 	<classpathentry kind="lib" path="C:/Users/fonse/Documents/Processing/libraries/fisica/library/JBox2D-2.0.1-b250-Library.jar"/>
 	<classpathentry kind="lib" path="C:/Users/fonse/Documents/processing-3.5.3/core/library/gluegen-rt.jar"/>
 	<classpathentry kind="lib" path="C:/Users/fonse/Documents/processing-3.5.3/core/library/jogl-all.jar"/>
+	<classpathentry kind="lib" path="C:/Users/fonse/Documents/Processing/libraries/minim/library/minim.jar"/>
+	<classpathentry kind="lib" path="C:/Users/fonse/Documents/Processing/libraries/minim/library/jl1.0.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/fonse/Documents/Processing/libraries/minim/library/jsminim.jar"/>
+	<classpathentry kind="lib" path="C:/Users/fonse/Documents/Processing/libraries/minim/library/mp3spi1.9.5.jar"/>
+	<classpathentry kind="lib" path="C:/Users/fonse/Documents/Processing/libraries/minim/library/tritonus_aos.jar"/>
+	<classpathentry kind="lib" path="C:/Users/fonse/Documents/Processing/libraries/minim/library/tritonus_share.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

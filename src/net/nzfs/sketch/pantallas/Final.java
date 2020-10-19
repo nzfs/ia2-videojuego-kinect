@@ -4,11 +4,12 @@ import processing.core.PApplet;
 import processing.core.PImage;
 
 public class Final extends Pantallas {
-
+	
 	public Final(PApplet _sketch, PImage _fondo)
 	{
 		super(_sketch, _fondo);
 		active = false;
+		finTimer = 5;
 	}
 
 	public void display()
@@ -22,6 +23,14 @@ public class Final extends Pantallas {
 		sketch.text("Protegiste a los astronautas por " + tiempo + " segundos", sketch.width / 2,
 				sketch.height / 2 + 50);
 		sketch.text("Volver a jugar", sketch.width / 2, sketch.height / 2 + 105);
+		
+		if(sketch.frameCount % 30 == 0)
+		{
+			finTimer--;
+		}
+		
+		sketch.text(finTimer, sketch.width / 2, sketch.height / 2 + 155);
+
 		sketch.popStyle();
 	}
 }

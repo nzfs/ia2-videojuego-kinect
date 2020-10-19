@@ -14,7 +14,7 @@ public class Inicial extends Pantallas {
 	public void display()
 	{
 		sketch.pushStyle();
-		sketch.image(fondo, 0, 0);
+		sketch.image(fondo, 0, 0, sketch.width, sketch.height);
 		sketch.textAlign(PApplet.CENTER);
 		sketch.textSize(40);
 		sketch.fill(255);
@@ -24,7 +24,7 @@ public class Inicial extends Pantallas {
 		sketch.textSize(20);
 		sketch.text("Precione una tecla cualquiera", sketch.width / 2, sketch.height / 2 + 100);
 		sketch.textSize(10);
-		sketch.text("(esto deberia ser un menu)", sketch.width / 2, sketch.height / 2 + 140);
+
 		sketch.popStyle();
 	}
 

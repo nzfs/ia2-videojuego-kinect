@@ -7,18 +7,17 @@
 package net.nzfs.sketch;
 
 import processing.core.*;
+import net.nzfs.sketch.Sonido.Sonidos;
 import net.nzfs.sketch.entidades.*;
 import net.nzfs.sketch.pantallas.*;
-
 import java.util.ArrayList;
-
 import fisica.*;
 
 public class Videojuego_002 extends PApplet implements fisica.FContactListener {
 
 	public void settings()
 	{
-		//size(640, 480);
+		// size(640, 480);
 		fullScreen(P3D);
 	}
 
@@ -32,9 +31,10 @@ public class Videojuego_002 extends PApplet implements fisica.FContactListener {
 	public CapturaJugador jugador;
 	public PImage fondo;
 	public PImage asteroideHijoImg[];
-	public PImage pisoImg;
+	// public PImage pisoImg;
 	public PGraphics parallaxGraph;
 	public String estado;
+	public Sonidos sonido;
 
 	// parallax
 	public Parallax parallax;
@@ -42,7 +42,7 @@ public class Videojuego_002 extends PApplet implements fisica.FContactListener {
 
 	// fisica
 	public FWorld mundo;
-	public FBox piso;
+	// public FBox piso;
 	public ArrayList<FCircle> asteroideHijo;
 
 	// -------------------------------------------------------------------------------
@@ -80,21 +80,24 @@ public class Videojuego_002 extends PApplet implements fisica.FContactListener {
 		mundo = new FWorld();
 		juego = new Juego(this, fondo, mundo, jugador);
 
-		piso = new FBox(width, 10);
-		pisoImg = loadImage("sprites/piso.png");
-		piso.attachImage(pisoImg);
-		piso.setPosition(0 + width / 2, height);
-		piso.setGrabbable(false);
-		piso.setStatic(true);
-		piso.setName("piso");
-		piso.setRestitution(1.5f);
-		mundo.add(piso);
+		// piso = new FBox(width, 10);
+		// pisoImg = createImage(width, height, RGB);
+		// pisoImg = loadImage("sprites/piso.png");
+		// piso.attachImage(pisoImg);
+		// piso.setPosition(0 + width / 2, height);
+		// piso.setGrabbable(false);
+		// piso.setStatic(true);
+		// piso.setName("piso");
+		// piso.setRestitution(1.5f);
+		// mundo.add(piso);
 
 		asteroideHijo = new ArrayList<FCircle>();
 
 		// parallax
 		// parallaxLayers = new PImage[3];
 		// parallax = new Parallax(parallaxLayers);
+
+		sonido = new Sonidos(this);
 
 		println("Juego cargado");
 		loaded = true;
@@ -144,6 +147,7 @@ public class Videojuego_002 extends PApplet implements fisica.FContactListener {
 					mundo.remove(hijo);
 				}
 			}
+			restart();
 		}
 	}
 
@@ -240,6 +244,8 @@ public class Videojuego_002 extends PApplet implements fisica.FContactListener {
 		float x = asteroide.getX();
 		float y = asteroide.getY();
 
+		sonido.explociones[(int) random(3)].trigger();
+
 		mundo.remove(asteroide);
 
 		if (t < 5)
@@ -254,7 +260,7 @@ public class Videojuego_002 extends PApplet implements fisica.FContactListener {
 			hijo.setFill(200, 0, 0);
 			hijo.setName("asteroideHijo");
 			hijo.attachImage(asteroideHijoImg[(int) random(6)]);
-			hijo.addForce(random(-50000, 50000), -random(50000));
+			hijo.addImpulse(random(-50000, 50000), -random(50000));
 			// agrego al mundo
 			mundo.add(hijo);
 		}
@@ -264,10 +270,22 @@ public class Videojuego_002 extends PApplet implements fisica.FContactListener {
 
 	public void matarAstronauta(Astronauta p)
 	{
+		sonido.hit.trigger();
 		p.matar();
 	}
 
 	// --------------------------------------------------------------------------------
+	public void restart()
+	{
+		if (Pantallas.finTimer <= 0)
+		{
+			println("fin");
+			fin.remove();
+			// inicial.active();
+			juego.active();
+			Pantallas.finTimer = 5;
+		}
+	}
 
 	public void keyPressed()
 	{

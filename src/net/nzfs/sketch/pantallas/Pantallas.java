@@ -12,6 +12,8 @@ public abstract class Pantallas {
 	protected boolean active;
 	protected static int tiempoInicio;
 	protected static int tiempo;
+	
+	public static int finTimer;
 
 	public Pantallas(PApplet _sketch, PImage _fondo)
 	{
