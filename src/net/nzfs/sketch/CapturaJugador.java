@@ -83,21 +83,6 @@ public class CapturaJugador {
 		return convertedJoint;
 	}
 
-	/*
-	 * private void drawSkeleton(int userId) { // sketch.stroke(0); //
-	 * sketch.strokeWeight(5); drawJoint(userId, SimpleOpenNI.SKEL_RIGHT_HAND);
-	 * drawJoint(userId, SimpleOpenNI.SKEL_LEFT_HAND); }
-	 */
-	/*
-	 * private void drawJoint(int userId, int jointId) { PVector joint = new
-	 * PVector(); float confidence = kinect.getJointPositionSkeleton(userId,
-	 * jointId, joint); if (confidence < 0.5) { return; } PVector convertedJoint =
-	 * new PVector(); kinect.convertRealWorldToProjective(joint, convertedJoint); //
-	 * sketch.pushStyle(); sketch.fill(255, 0, 0); sketch.noStroke();
-	 * sketch.ellipse(convertedJoint.x, convertedJoint.y, 50, 50); //
-	 * sketch.popStyle(); }
-	 */
-
 	private void onNewUser(SimpleOpenNI kinect, int userId)
 	{
 		PApplet.println("Start skeleton tracking");
@@ -125,7 +110,7 @@ public class CapturaJugador {
 				{
 					// set the sketch pixel to the color pixel
 					// mask.pixels[i] = rgbImage.pixels[i];
-					mask.pixels[i] = sketch.color(50, 0, 255);
+					mask.pixels[i] = sketch.color(150);
 				} else
 				{
 					mask.pixels[i] = fondo.pixels[i];

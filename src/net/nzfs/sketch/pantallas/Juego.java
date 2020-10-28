@@ -132,6 +132,8 @@ public class Juego extends Pantallas {
 			// jugadorIzq.update(capturaJugador.leftHandPosition.x,
 			// capturaJugador.leftHandPosition.y);
 			jugadorIzq.update(leftHandX, leftHandY);
+			
+			//sketch.image(jugadorIzq.animacion(), leftHandX, leftHandY);
 		}
 		if (capturaJugador.rightHandPosition != null && capturaJugador.rightHandPosition.x != 0
 				&& capturaJugador.rightHandPosition.y != 0)
@@ -155,6 +157,7 @@ public class Juego extends Pantallas {
 			for (Astronauta astronauta : astronautas)
 			{
 				astronauta.matar();
+				mundo.remove(astronauta);
 			}
 
 			astronautas.clear();

@@ -23,8 +23,7 @@ public class Sonidos {
 		
 		hit = minim.loadSample("sonidos/hit.wav");
 		
-		// musica = minim.loadFile("sonidos/musica.wav", 512);
-		// play();
+		musica = minim.loadFile("sonidos/sun_ra.mp3", 512);
 	}
 
 	public void play()
